@@ -104,7 +104,7 @@
             </p>
             <button class="btn transparent" id="sign-in-btn"><a href="signin.php">Sign in</a></button>
           </div>
-          <img src="Assests/Images/log.svg" class="image" alt="" />
+          <img src="Assests/Images/Introimage.svg" class="image" alt="" />
         </div>
       </div>
     </div>

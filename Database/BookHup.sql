@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 25, 2021 at 11:08 PM
--- Server version: 10.4.21-MariaDB
--- PHP Version: 8.0.11
+-- Generation Time: Apr 08, 2025 at 12:54 AM
+-- Server version: 10.4.25-MariaDB
+-- PHP Version: 8.1.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `BookHup`
+-- Database: `bookhup`
 --
 
 -- --------------------------------------------------------
@@ -72,8 +72,7 @@ CREATE TABLE `books` (
 -- Dumping data for table `books`
 --
 
-INSERT INTO `books` 
-(`id`, `title`, `author`, `publish_date`, `price`, `client_id`, `category_id`, `book_image`, `author_id`) VALUES
+INSERT INTO `books` (`id`, `title`, `author`, `publish_date`, `price`, `client_id`, `category_id`, `book_image`, `author_id`) VALUES
 (1, 'The Eyes of the Dragon', 'Stephen King', '2018-01-09', 66.24, 1, 1, 'dragons.jpg', 1),
 (2, 'The Eye of the World', 'Robert Jordan', '2019-10-29', 40.44, 1, 1, 'eye-of-world.jpg', 2),
 (4, 'Stories of the Sahara', 'Sanmao', '2021-10-23', 103.04, 1, 16, 'Stories-of-the-Sahara.jpg', 3),
@@ -83,7 +82,7 @@ INSERT INTO `books`
 (8, 'The One Thing', 'Gary Keller, Jay Papasan', '2021-10-23', 91.8, 1, 13, 'the-one.jpg', 6),
 (9, 'The 3-Minute Rule', 'Brant Pinvidic', '2019-10-29', 97.92, 1, 13, '3-minute-rule.jpg', 7),
 (10, 'JavaScript Cookbook', 'Matthew MacDonald, Adam D. Scott & 1 more', '2021-08-10', 257.56, 1, 29, 'javascript-cookbook.jpg', 9),
-(11, 'PHP & Mysql', 'Tom Butler, Kevin Yank', '2017-11-05', 147.0, 1, 29, 'php&mysql.jpg', 10);
+(11, 'PHP & Mysql', 'Tom Butler, Kevin Yank', '2017-11-05', 147, 1, 29, 'php&mysql.jpg', 10);
 
 -- --------------------------------------------------------
 
@@ -104,13 +103,14 @@ CREATE TABLE `cart` (
 --
 
 INSERT INTO `cart` (`cart_id`, `total`, `quantity`, `client_id`, `book_id`) VALUES
-(356, 0, 3, 4, 4),
+(356, 0, 2, 4, 4),
 (358, 0, 2, 4, 6),
 (359, 0, 1, 4, 7),
 (360, 0, 4, 4, 1),
-(362, 0, 2, 1, 5),
+(362, 0, 3, 1, 5),
 (363, 0, 1, 1, 2),
-(364, 0, 3, 1, 4);
+(364, 0, 2, 1, 4),
+(367, 0, 1, 19, 4);
 
 -- --------------------------------------------------------
 
@@ -176,10 +176,9 @@ CREATE TABLE `customer` (
 --
 
 INSERT INTO `customer` (`id`, `fullname`, `email`, `telephone`, `username`, `address`, `city`, `password`) VALUES
-(1, 'Admin admin', 'a@a.com', 05240585, 'admin', 'admin', 'sidisalem', 'admin');
-
-INSERT INTO `customer` (`id`, `fullname`, `email`, `telephone`, `username`, `address`, `city`, `password`) VALUES
-(4, 'Admin admin', 'a2@a.com', 05240585, 'admin1', 'admin1', 'Aljouf', 'admin1');
+(1, 'Admin admin', 'a@a.com', 5240585, 'admin', 'admin', 'sidisalem', 'admin'),
+(4, 'Admin admin', 'a2@a.com', 5240585, 'admin1', 'admin1', 'Aljouf', 'admin1'),
+(19, 'Tasneem Alnashmi ', 'Tasneem@gmail.com', 501184947, 'Tasneem ', '', '', 'bB:w..5QWgwdpBf');
 
 --
 -- Indexes for dumped tables
@@ -240,7 +239,7 @@ ALTER TABLE `books`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `cart_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=366;
+  MODIFY `cart_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=368;
 
 --
 -- AUTO_INCREMENT for table `category`
@@ -252,7 +251,7 @@ ALTER TABLE `category`
 -- AUTO_INCREMENT for table `customer`
 --
 ALTER TABLE `customer`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- Constraints for dumped tables
@@ -269,7 +268,6 @@ ALTER TABLE `books`
 --
 -- Constraints for table `cart`
 --
-
 ALTER TABLE `cart`
   ADD CONSTRAINT `book_id` FOREIGN KEY (`book_id`) REFERENCES `books` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `ordering` FOREIGN KEY (`client_id`) REFERENCES `customer` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;

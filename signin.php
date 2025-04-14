@@ -70,7 +70,7 @@
             </p>
             <button class="btn transparent" id="sign-up-btn"><a href="signup.php">Sign up</a></button>
           </div>
-          <img src="Assests/Images/log.svg" class="image" alt="" />
+          <img src="Assests/Images/Introimage.svg" class="image" alt="" />
         </div>
     </div>
   </body>
